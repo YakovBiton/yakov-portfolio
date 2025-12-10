@@ -742,9 +742,6 @@
           <button onclick="scrollToSection('projects')" class="nav-button">
             Projects
           </button>
-          <button onclick="scrollToSection('experience')" class="nav-button">
-            Experience
-          </button>
           <button onclick="scrollToSection('cv')" class="nav-button">CV</button>
           <button onclick="scrollToSection('contact')" class="nav-button">
             Contact
@@ -849,20 +846,7 @@
               <div class="skill-icon">💻</div>
               <div class="skill-title">Programming Languages</div>
             </div>
-            <div class="skill-list">Python, Java, C++, JavaScript</div>
-          </div>
-          <div
-            class="skill-card"
-            data-skill="frontend"
-            onclick="filterBySkill('frontend', this)"
-          >
-            <div class="skill-header">
-              <div class="skill-icon">🎨</div>
-              <div class="skill-title">Frontend Development</div>
-            </div>
-            <div class="skill-list">
-              React.js, Flutter, HTML/CSS, Responsive Design
-            </div>
+            <div class="skill-list">Python, Java, C++, JavaScript, Assembly</div>
           </div>
           <div
             class="skill-card"
@@ -887,33 +871,7 @@
               <div class="skill-title">AI & Machine Learning</div>
             </div>
             <div class="skill-list">
-              PyTorch, TensorFlow, OpenCV, Dlib, LangChain, RAG, GPT-4
-            </div>
-          </div>
-          <div
-            class="skill-card"
-            data-skill="cloud"
-            onclick="filterBySkill('cloud', this)"
-          >
-            <div class="skill-header">
-              <div class="skill-icon">☁️</div>
-              <div class="skill-title">Cloud & DevOps</div>
-            </div>
-            <div class="skill-list">
-              AWS, Firebase, Git, Version Control, Deployment
-            </div>
-          </div>
-          <div
-            class="skill-card"
-            data-skill="mobile"
-            onclick="filterBySkill('mobile', this)"
-          >
-            <div class="skill-header">
-              <div class="skill-icon">📱</div>
-              <div class="skill-title">Mobile Development</div>
-            </div>
-            <div class="skill-list">
-              Flutter, Cross-Platform Development, Mobile UI/UX
+              PyTorch, TensorFlow, LangChain, RAG, LLM Integration
             </div>
           </div>
           <div
@@ -927,6 +885,45 @@
             </div>
             <div class="skill-list">
               PostgreSQL, SQLite, Firebase, Qdrant (Vector DB)
+            </div>
+          </div>
+          <div
+            class="skill-card"
+            data-skill="mobile"
+            onclick="filterBySkill('mobile', this)"
+          >
+            <div class="skill-header">
+              <div class="skill-icon">📱</div>
+              <div class="skill-title">Mobile Development</div>
+            </div>
+            <div class="skill-list">
+              React Native, Flutter, Cross-Platform Development
+            </div>
+          </div>
+          <div
+            class="skill-card"
+            data-skill="frontend"
+            onclick="filterBySkill('frontend', this)"
+          >
+            <div class="skill-header">
+              <div class="skill-icon">🎨</div>
+              <div class="skill-title">Frontend Development</div>
+            </div>
+            <div class="skill-list">
+              React.js, React Native, HTML/CSS, UI/UX
+            </div>
+          </div>
+          <div
+            class="skill-card"
+            data-skill="cloud"
+            onclick="filterBySkill('cloud', this)"
+          >
+            <div class="skill-header">
+              <div class="skill-icon">☁️</div>
+              <div class="skill-title">Cloud & DevOps</div>
+            </div>
+            <div class="skill-list">
+              AWS, Firebase, Git, Version Control, Deployment
             </div>
           </div>
           <div
@@ -1017,7 +1014,7 @@
                 <h3 class="project-title">MimicWork - AI Homework Assistant</h3>
                 <p class="project-description">
                   AI-powered homework assistant that learns your writing style
-                  from past assignments using RAG technology and GPT-4. Analyzes
+                  from past assignments using RAG technology and Large Language Models. Analyzes
                   vocabulary, sentence structure, and tone to generate
                   personalized answers. Features semantic search with Qdrant
                   vector database.
@@ -1026,7 +1023,7 @@
                   <span class="tech-tag">React</span>
                   <span class="tech-tag">Python</span>
                   <span class="tech-tag">FastAPI</span>
-                  <span class="tech-tag">GPT-4</span>
+                  <span class="tech-tag">LLMs</span>
                   <span class="tech-tag">RAG</span>
                   <span class="tech-tag">Qdrant</span>
                   <span class="tech-tag">LangChain</span>
@@ -1106,49 +1103,6 @@
             No projects match this skill filter. Try another skill or clear the
             filter.
           </p>
-        </div>
-      </section>
-
-      <!-- Experience Section -->
-      <section id="experience" class="glass-card">
-        <h2 class="section-title">Experience</h2>
-        <div class="skills-grid">
-          <div class="skill-card" style="cursor: default">
-            <div class="skill-header">
-              <div class="skill-icon">🚀</div>
-              <div class="skill-title">Lead Developer</div>
-            </div>
-            <div class="skill-list">
-              <strong>Food Delivery Platform | Current</strong><br />
-              Leading development of early-stage platform, designing backend
-              with Python/FastAPI, developing cross-platform mobile app with
-              Flutter, overseeing product development and UI/UX design.
-            </div>
-          </div>
-          <div class="skill-card" style="cursor: default">
-            <div class="skill-header">
-              <div class="skill-icon">🎖️</div>
-              <div class="skill-title">C&C Systems Specialist</div>
-            </div>
-            <div class="skill-list">
-              <strong>Military Service | Oct 2023 - Jan 2025</strong><br />
-              Implemented and maintained Command & Control Systems, assessed
-              system integrity, conducted training sessions, worked with diverse
-              technical platforms.
-            </div>
-          </div>
-          <div class="skill-card" style="cursor: default">
-            <div class="skill-header">
-              <div class="skill-icon">👨‍🏫</div>
-              <div class="skill-title">Computer Science Educator</div>
-            </div>
-            <div class="skill-list">
-              <strong>ORT | Jan 2023 - Oct 2023</strong><br />
-              Taught programming fundamentals using Python to high school
-              students, introduced younger students to programming through
-              MakeCode application.
-            </div>
-          </div>
         </div>
       </section>
 
