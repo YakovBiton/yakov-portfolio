@@ -240,18 +240,16 @@
         background: var(--primary-color);
         color: white;
         transform: translateY(-3px);
-        box-shadow: var(--hover-shadow);
       }
 
       .about-content h2 {
-        font-size: 2rem;
+        font-size: 1.75rem;
         margin-bottom: 1rem;
-        color: var(--text-primary);
       }
 
       .about-content p {
         color: var(--text-secondary);
-        margin-bottom: 1.5rem;
+        margin-bottom: 1rem;
         line-height: 1.8;
       }
 
@@ -262,29 +260,34 @@
       }
 
       .tag {
-        background: var(--bg-secondary);
-        color: var(--text-primary);
         padding: 0.5rem 1rem;
-        border-radius: 20px;
-        font-size: 0.9rem;
-        border: 1px solid var(--border-color);
-        transition: all 0.3s ease;
-      }
-
-      .tag:hover {
         background: var(--primary-color);
         color: white;
-        transform: translateY(-2px);
+        border-radius: 20px;
+        font-size: 0.875rem;
+        font-weight: 500;
+      }
+
+      /* Section Titles */
+      .section-title {
+        font-size: 1.75rem;
+        margin-bottom: 2rem;
+        position: relative;
+        display: inline-block;
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 50px;
+        height: 3px;
+        background: var(--primary-color);
+        border-radius: 2px;
       }
 
       /* Skills Section */
-      .section-title {
-        font-size: 2rem;
-        margin-bottom: 2rem;
-        text-align: center;
-        color: var(--text-primary);
-      }
-
       .skills-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -292,17 +295,42 @@
       }
 
       .skill-card {
-        background: var(--bg-secondary);
         padding: 1.5rem;
+        background: var(--bg-secondary);
         border-radius: 12px;
         border: 1px solid var(--border-color);
         transition: all 0.3s ease;
+        cursor: pointer;
+        position: relative;
       }
 
       .skill-card:hover {
         transform: translateY(-5px);
         box-shadow: var(--hover-shadow);
         border-color: var(--primary-color);
+      }
+
+      /* Active/Selected skill card */
+      .skill-card.active {
+        border-color: var(--primary-color);
+        background: linear-gradient(
+          135deg,
+          rgba(37, 99, 235, 0.1),
+          rgba(30, 64, 175, 0.1)
+        );
+        box-shadow: 0 0 0 2px var(--primary-color);
+      }
+
+      body.dark-mode .skill-card.active {
+        background: linear-gradient(
+          135deg,
+          rgba(96, 165, 250, 0.15),
+          rgba(59, 130, 246, 0.15)
+        );
+      }
+
+      .skill-card.active .skill-title {
+        color: var(--primary-color);
       }
 
       .skill-header {
@@ -315,60 +343,88 @@
       .skill-icon {
         width: 48px;
         height: 48px;
-        background: var(--primary-color);
-        border-radius: 8px;
+        background: linear-gradient(
+          135deg,
+          var(--primary-color),
+          var(--secondary-color)
+        );
+        border-radius: 12px;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: white;
         font-size: 1.5rem;
       }
 
       .skill-title {
-        font-size: 1.2rem;
+        font-size: 1.125rem;
         font-weight: 600;
-        color: var(--text-primary);
+        transition: color 0.3s ease;
       }
 
       .skill-list {
         color: var(--text-secondary);
-        font-size: 0.95rem;
+        font-size: 0.9rem;
+        line-height: 1.6;
+      }
+
+      /* Filter indicator */
+      .filter-indicator {
+        display: none;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        background: var(--primary-color);
+        color: white;
+        border-radius: 25px;
+        margin-bottom: 1.5rem;
+        font-weight: 500;
+      }
+
+      .filter-indicator.show {
+        display: flex;
+      }
+
+      .filter-indicator button {
+        background: rgba(255, 255, 255, 0.2);
+        border: none;
+        color: white;
+        padding: 0.25rem 0.75rem;
+        border-radius: 15px;
+        cursor: pointer;
+        margin-left: 0.5rem;
+        font-size: 0.85rem;
+        transition: background 0.3s ease;
+      }
+
+      .filter-indicator button:hover {
+        background: rgba(255, 255, 255, 0.3);
       }
 
       /* Projects Section */
       .projects-carousel {
         position: relative;
         overflow: hidden;
+        padding: 1rem 0;
       }
 
       .projects-container {
         display: flex;
-        gap: 2rem;
+        gap: 1.5rem;
         overflow-x: auto;
         scroll-behavior: smooth;
-        padding: 1rem 0;
-        scrollbar-width: thin;
-        scrollbar-color: var(--primary-color) var(--bg-secondary);
+        padding-bottom: 1rem;
+        scrollbar-width: none;
       }
 
       .projects-container::-webkit-scrollbar {
-        height: 8px;
-      }
-
-      .projects-container::-webkit-scrollbar-track {
-        background: var(--bg-secondary);
-        border-radius: 4px;
-      }
-
-      .projects-container::-webkit-scrollbar-thumb {
-        background: var(--primary-color);
-        border-radius: 4px;
+        display: none;
       }
 
       .project-card {
-        min-width: 350px;
+        flex: 0 0 350px;
         background: var(--bg-secondary);
-        border-radius: 12px;
+        border-radius: 16px;
         overflow: hidden;
         border: 1px solid var(--border-color);
         transition: all 0.3s ease;
@@ -379,9 +435,13 @@
         box-shadow: var(--hover-shadow);
       }
 
+      /* Hidden project card (filtered out) */
+      .project-card.hidden {
+        display: none;
+      }
+
       .project-image {
-        width: 100%;
-        height: 200px;
+        height: 180px;
         background: linear-gradient(
           135deg,
           var(--primary-color),
@@ -390,8 +450,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        color: white;
-        font-size: 3rem;
+        font-size: 4rem;
       }
 
       .project-content {
@@ -399,15 +458,15 @@
       }
 
       .project-title {
-        font-size: 1.3rem;
-        margin-bottom: 0.5rem;
-        color: var(--text-primary);
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 0.75rem;
       }
 
       .project-description {
         color: var(--text-secondary);
+        font-size: 0.9rem;
         margin-bottom: 1rem;
-        font-size: 0.95rem;
         line-height: 1.6;
       }
 
@@ -419,24 +478,25 @@
       }
 
       .tech-tag {
-        background: var(--bg-primary);
-        color: var(--text-secondary);
         padding: 0.25rem 0.75rem;
-        border-radius: 12px;
-        font-size: 0.85rem;
+        background: var(--bg-primary);
         border: 1px solid var(--border-color);
+        border-radius: 15px;
+        font-size: 0.8rem;
+        color: var(--text-secondary);
       }
 
       .project-links {
         display: flex;
-        gap: 1rem;
+        gap: 0.75rem;
       }
 
       .project-link {
         padding: 0.5rem 1rem;
         border-radius: 8px;
         text-decoration: none;
-        font-size: 0.9rem;
+        font-size: 0.875rem;
+        font-weight: 500;
         transition: all 0.3s ease;
         display: inline-flex;
         align-items: center;
@@ -630,6 +690,18 @@
         font-size: 0.9rem;
       }
 
+      /* No results message */
+      .no-results {
+        text-align: center;
+        padding: 3rem;
+        color: var(--text-secondary);
+        display: none;
+      }
+
+      .no-results.show {
+        display: block;
+      }
+
       /* Mobile Responsiveness */
       @media (max-width: 768px) {
         .nav-menu {
@@ -649,37 +721,32 @@
           grid-template-columns: 1fr;
         }
 
-        .skills-grid {
-          grid-template-columns: 1fr;
-        }
-
         .project-card {
-          min-width: 280px;
+          flex: 0 0 300px;
         }
       }
     </style>
   </head>
-  <!-- CHANGE 1: Added class="dark-mode" to make dark mode the default -->
   <body class="dark-mode">
     <!-- Navigation -->
     <nav class="navbar">
       <div class="nav-container">
-        <div class="nav-name">Yakov</div>
+        <div class="nav-name">Yakov Biton</div>
         <div class="nav-menu">
-          <button class="nav-button" onclick="scrollToSection('about')">
+          <button onclick="scrollToSection('about')" class="nav-button">
             About
           </button>
-          <button class="nav-button" onclick="scrollToSection('skills')">
+          <button onclick="scrollToSection('skills')" class="nav-button">
             Skills
           </button>
-          <button class="nav-button" onclick="scrollToSection('projects')">
+          <button onclick="scrollToSection('projects')" class="nav-button">
             Projects
           </button>
-          <!-- CHANGE 2: Removed Experience button from navigation -->
-          <button class="nav-button" onclick="scrollToSection('cv')">
-            CV & Certifications
+          <button onclick="scrollToSection('experience')" class="nav-button">
+            Experience
           </button>
-          <button class="nav-button" onclick="scrollToSection('contact')">
+          <button onclick="scrollToSection('cv')" class="nav-button">CV</button>
+          <button onclick="scrollToSection('contact')" class="nav-button">
             Contact
           </button>
           <div class="theme-toggle">
@@ -693,7 +760,6 @@
       </div>
     </nav>
 
-    <!-- Main Container -->
     <div class="container">
       <!-- About Section -->
       <section id="about" class="glass-card">
@@ -739,18 +805,18 @@
             <h2>About Me</h2>
             <p>
               Hey, I'm Yakov, a passionate Software Developer with expertise in
-              full-stack development and machine learning. I'm currently leading
-              the development of an innovative platform to transform the food
-              delivery market into an open market system, working with
-              cutting-edge technologies to create scalable, cross-platform
-              solutions.
+              full-stack development, machine learning, and computer vision. I'm
+              currently leading the development of an innovative platform to
+              transform the food delivery market into an open market system,
+              working with cutting-edge technologies to create scalable,
+              cross-platform solutions.
             </p>
             <p>
               With a strong background in Python, FastAPI, Flutter, and React, I
               enjoy building products that make a real impact. From developing
-              AI-powered systems to teaching the next generation of programmers,
-              I'm always eager to take on new challenges and contribute to
-              innovative projects.
+              AI-powered systems like facial kinship verification to creating
+              intelligent homework assistants, I'm always eager to take on new
+              challenges and contribute to innovative projects.
             </p>
             <p style="font-weight: 500; margin-bottom: 1rem">
               My expertise includes:
@@ -758,10 +824,10 @@
             <div class="expertise-tags">
               <span class="tag">Full-Stack Development</span>
               <span class="tag">Machine Learning</span>
+              <span class="tag">Computer Vision</span>
               <span class="tag">Cross-Platform Mobile</span>
               <span class="tag">API Architecture</span>
-              <span class="tag">UI/UX Design</span>
-              <span class="tag">Cloud Computing</span>
+              <span class="tag">RAG & LLMs</span>
             </div>
           </div>
         </div>
@@ -770,15 +836,26 @@
       <!-- Skills Section -->
       <section id="skills" class="glass-card">
         <h2 class="section-title">Skills</h2>
+        <p style="color: var(--text-secondary); margin-bottom: 1.5rem">
+          💡 Click on a skill to filter relevant projects
+        </p>
         <div class="skills-grid">
-          <div class="skill-card">
+          <div
+            class="skill-card"
+            data-skill="programming"
+            onclick="filterBySkill('programming', this)"
+          >
             <div class="skill-header">
               <div class="skill-icon">💻</div>
               <div class="skill-title">Programming Languages</div>
             </div>
             <div class="skill-list">Python, Java, C++, JavaScript</div>
           </div>
-          <div class="skill-card">
+          <div
+            class="skill-card"
+            data-skill="frontend"
+            onclick="filterBySkill('frontend', this)"
+          >
             <div class="skill-header">
               <div class="skill-icon">🎨</div>
               <div class="skill-title">Frontend Development</div>
@@ -787,32 +864,50 @@
               React.js, Flutter, HTML/CSS, Responsive Design
             </div>
           </div>
-          <div class="skill-card">
+          <div
+            class="skill-card"
+            data-skill="backend"
+            onclick="filterBySkill('backend', this)"
+          >
             <div class="skill-header">
               <div class="skill-icon">⚙️</div>
               <div class="skill-title">Backend Development</div>
             </div>
             <div class="skill-list">
-              FastAPI, Python, RESTful APIs, PostgreSQL
+              FastAPI, Python, RESTful APIs, PostgreSQL, SQLite
             </div>
           </div>
-          <div class="skill-card">
+          <div
+            class="skill-card"
+            data-skill="ai"
+            onclick="filterBySkill('ai', this)"
+          >
             <div class="skill-header">
               <div class="skill-icon">🤖</div>
               <div class="skill-title">AI & Machine Learning</div>
             </div>
             <div class="skill-list">
-              Machine Learning, LangChain, Computer Vision, AI Integration
+              PyTorch, TensorFlow, OpenCV, Dlib, LangChain, RAG, GPT-4
             </div>
           </div>
-          <div class="skill-card">
+          <div
+            class="skill-card"
+            data-skill="cloud"
+            onclick="filterBySkill('cloud', this)"
+          >
             <div class="skill-header">
               <div class="skill-icon">☁️</div>
               <div class="skill-title">Cloud & DevOps</div>
             </div>
-            <div class="skill-list">AWS, Git, Version Control, Deployment</div>
+            <div class="skill-list">
+              AWS, Firebase, Git, Version Control, Deployment
+            </div>
           </div>
-          <div class="skill-card">
+          <div
+            class="skill-card"
+            data-skill="mobile"
+            onclick="filterBySkill('mobile', this)"
+          >
             <div class="skill-header">
               <div class="skill-icon">📱</div>
               <div class="skill-title">Mobile Development</div>
@@ -821,32 +916,120 @@
               Flutter, Cross-Platform Development, Mobile UI/UX
             </div>
           </div>
+          <div
+            class="skill-card"
+            data-skill="database"
+            onclick="filterBySkill('database', this)"
+          >
+            <div class="skill-header">
+              <div class="skill-icon">🗄️</div>
+              <div class="skill-title">Databases</div>
+            </div>
+            <div class="skill-list">
+              PostgreSQL, SQLite, Firebase, Qdrant (Vector DB)
+            </div>
+          </div>
+          <div
+            class="skill-card"
+            data-skill="cv"
+            onclick="filterBySkill('cv', this)"
+          >
+            <div class="skill-header">
+              <div class="skill-icon">👁️</div>
+              <div class="skill-title">Computer Vision</div>
+            </div>
+            <div class="skill-list">
+              OpenCV, Dlib, Facial Recognition, Image Processing
+            </div>
+          </div>
         </div>
       </section>
 
       <!-- Projects Section -->
-      <!-- CHANGE 3: Updated projects - removed Food Delivery & Educational Platform, added MimicWork, removed demo from Lost Children -->
       <section id="projects" class="glass-card">
         <h2 class="section-title">Projects</h2>
+
+        <!-- Filter indicator -->
+        <div class="filter-indicator" id="filterIndicator">
+          <span>Filtering by: <strong id="filterName"></strong></span>
+          <button onclick="clearFilter()">✕ Clear Filter</button>
+        </div>
+
         <div class="projects-carousel">
-          <div class="projects-container">
-            <!-- MimicWork Project - NEW -->
-            <div class="project-card">
-              <div class="project-image">📚</div>
+          <div class="projects-container" id="projectsContainer">
+            <!-- The Lost One - Facial Kinship Verification -->
+            <div
+              class="project-card"
+              data-skills="ai,cv,backend,frontend,database,programming"
+            >
+              <div class="project-image">👨‍👩‍👧</div>
               <div class="project-content">
-                <h3 class="project-title">MimicWork</h3>
+                <h3 class="project-title">
+                  The Lost One - Facial Kinship Verification
+                </h3>
                 <p class="project-description">
-                  AI-Powered Homework Assistant that learns your unique writing
-                  style from past assignments and generates answers that sound
-                  authentically like you wrote them. Uses RAG technology and
-                  GPT-4 for intelligent style mimicking.
+                  Advanced computer vision system that identifies parent-child
+                  relationships through facial feature analysis. Uses
+                  multi-model approach combining geometric facial measurements,
+                  68-point landmark detection, and deep learning with 61%
+                  accuracy. Features a React web app with Firebase
+                  authentication.
                 </p>
                 <div class="project-tech">
-                  <span class="tech-tag">React.js</span>
+                  <span class="tech-tag">Python</span>
+                  <span class="tech-tag">PyTorch</span>
+                  <span class="tech-tag">TensorFlow</span>
+                  <span class="tech-tag">OpenCV</span>
+                  <span class="tech-tag">Dlib</span>
+                  <span class="tech-tag">FastAPI</span>
+                  <span class="tech-tag">React</span>
+                  <span class="tech-tag">Firebase</span>
+                </div>
+                <div class="project-links">
+                  <a
+                    href="https://github.com/YakovBiton/The-Lost-One"
+                    target="_blank"
+                    class="project-link github"
+                  >
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                      />
+                    </svg>
+                    GitHub
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- MimicWork -->
+            <div
+              class="project-card"
+              data-skills="ai,backend,frontend,database,programming"
+            >
+              <div class="project-image">📚</div>
+              <div class="project-content">
+                <h3 class="project-title">MimicWork - AI Homework Assistant</h3>
+                <p class="project-description">
+                  AI-powered homework assistant that learns your writing style
+                  from past assignments using RAG technology and GPT-4. Analyzes
+                  vocabulary, sentence structure, and tone to generate
+                  personalized answers. Features semantic search with Qdrant
+                  vector database.
+                </p>
+                <div class="project-tech">
+                  <span class="tech-tag">React</span>
                   <span class="tech-tag">Python</span>
                   <span class="tech-tag">FastAPI</span>
                   <span class="tech-tag">GPT-4</span>
                   <span class="tech-tag">RAG</span>
+                  <span class="tech-tag">Qdrant</span>
+                  <span class="tech-tag">LangChain</span>
                 </div>
                 <div class="project-links">
                   <a
@@ -867,7 +1050,7 @@
                     GitHub
                   </a>
                   <a
-                    href="https://mimicwork.vercel.app"
+                    href="https://mimic-work.vercel.app"
                     target="_blank"
                     class="project-link demo"
                     >Live Demo →</a
@@ -875,30 +1058,30 @@
                 </div>
               </div>
             </div>
-            <!-- Lost Children Finder - Demo button removed -->
-            <div class="project-card">
-              <div class="project-image">👨‍👩‍👧</div>
+
+            <!-- Food Delivery Platform -->
+            <div
+              class="project-card"
+              data-skills="backend,frontend,mobile,database,programming,cloud"
+            >
+              <div class="project-image">🍔</div>
               <div class="project-content">
-                <h3 class="project-title">Lost Children Finder</h3>
+                <h3 class="project-title">Food Delivery Platform</h3>
                 <p class="project-description">
-                  Full-stack application using Machine Learning and AI to help
-                  locate lost children. The system analyzes facial images to
-                  determine biological relationships between parents and
-                  children.
+                  Leading development of an innovative platform transforming the
+                  food delivery market into an open market system. Built with
+                  scalable backend architecture and cross-platform mobile apps
+                  for customers, couriers, and businesses.
                 </p>
                 <div class="project-tech">
-                  <span class="tech-tag">React.js</span>
                   <span class="tech-tag">Python</span>
                   <span class="tech-tag">FastAPI</span>
-                  <span class="tech-tag">Machine Learning</span>
-                  <span class="tech-tag">Computer Vision</span>
+                  <span class="tech-tag">Flutter</span>
+                  <span class="tech-tag">PostgreSQL</span>
+                  <span class="tech-tag">AWS</span>
                 </div>
                 <div class="project-links">
-                  <a
-                    href="https://github.com/YakovBiton/LostChildrenFinder"
-                    target="_blank"
-                    class="project-link github"
-                  >
+                  <a href="#" class="project-link github">
                     <svg
                       width="16"
                       height="16"
@@ -916,9 +1099,58 @@
             </div>
           </div>
         </div>
+
+        <!-- No results message -->
+        <div class="no-results" id="noResults">
+          <p>
+            No projects match this skill filter. Try another skill or clear the
+            filter.
+          </p>
+        </div>
       </section>
 
-      <!-- CHANGE 2: Entire Experience Section REMOVED -->
+      <!-- Experience Section -->
+      <section id="experience" class="glass-card">
+        <h2 class="section-title">Experience</h2>
+        <div class="skills-grid">
+          <div class="skill-card" style="cursor: default">
+            <div class="skill-header">
+              <div class="skill-icon">🚀</div>
+              <div class="skill-title">Lead Developer</div>
+            </div>
+            <div class="skill-list">
+              <strong>Food Delivery Platform | Current</strong><br />
+              Leading development of early-stage platform, designing backend
+              with Python/FastAPI, developing cross-platform mobile app with
+              Flutter, overseeing product development and UI/UX design.
+            </div>
+          </div>
+          <div class="skill-card" style="cursor: default">
+            <div class="skill-header">
+              <div class="skill-icon">🎖️</div>
+              <div class="skill-title">C&C Systems Specialist</div>
+            </div>
+            <div class="skill-list">
+              <strong>Military Service | Oct 2023 - Jan 2025</strong><br />
+              Implemented and maintained Command & Control Systems, assessed
+              system integrity, conducted training sessions, worked with diverse
+              technical platforms.
+            </div>
+          </div>
+          <div class="skill-card" style="cursor: default">
+            <div class="skill-header">
+              <div class="skill-icon">👨‍🏫</div>
+              <div class="skill-title">Computer Science Educator</div>
+            </div>
+            <div class="skill-list">
+              <strong>ORT | Jan 2023 - Oct 2023</strong><br />
+              Taught programming fundamentals using Python to high school
+              students, introduced younger students to programming through
+              MakeCode application.
+            </div>
+          </div>
+        </div>
+      </section>
 
       <!-- CV & Certifications Section -->
       <section id="cv" class="glass-card">
@@ -929,15 +1161,18 @@
               I specialize in developing scalable, full-stack applications with
               a focus on user experience and technical excellence. My experience
               spans from leading early-stage product development to implementing
-              complex systems in challenging environments. I have a strong
-              background in both frontend and backend technologies, with
-              additional expertise in machine learning and AI integration.
+              complex AI and computer vision systems. I have a strong background
+              in both frontend and backend technologies, with additional
+              expertise in machine learning, deep learning, and RAG-based AI
+              applications.
             </p>
             <p>
-              Currently, I'm focused on revolutionizing the food delivery
-              industry through innovative platform development, combining my
-              technical skills with product vision to create impactful
-              solutions.
+              My end-of-degree project in Computer Science focused on facial
+              kinship verification using deep learning and computer vision
+              techniques. Currently, I'm focused on revolutionizing the food
+              delivery industry through innovative platform development,
+              combining my technical skills with product vision to create
+              impactful solutions.
             </p>
             <a href="#" class="download-cv">
               <svg
@@ -964,6 +1199,26 @@
                   "
                 >
                   Cloud Computing Fundamentals
+                </p>
+              </div>
+            </a>
+            <a href="#" class="cert-card">
+              <div
+                class="cert-icon"
+                style="background: linear-gradient(135deg, #0077b5, #00a0dc)"
+              >
+                B.Sc
+              </div>
+              <div>
+                <h4 style="margin-bottom: 0.25rem">B.Sc Computer Science</h4>
+                <p
+                  style="
+                    color: var(--text-secondary);
+                    font-size: 0.9rem;
+                    margin: 0;
+                  "
+                >
+                  End-of-degree project: Facial Kinship Verification
                 </p>
               </div>
             </a>
@@ -1016,7 +1271,7 @@
         <div class="contact-social">
           <h3>Connect with me</h3>
           <div class="social-links" style="justify-content: center">
-            <a href="mailto:kobbi9992@gmail.com" class="social-link">
+            <a href="mailto:yakovbiton@example.com" class="social-link">
               <svg
                 width="20"
                 height="20"
@@ -1067,11 +1322,103 @@
 
     <!-- Footer -->
     <footer>
-      <p>© 2025 Yakov. All rights reserved.</p>
+      <p>© 2025 Yakov Biton. All rights reserved.</p>
       <p style="margin-top: 0.5rem">Built with HTML, CSS & JavaScript</p>
     </footer>
 
     <script>
+      // Skill names mapping for display
+      const skillNames = {
+        programming: "Programming Languages",
+        frontend: "Frontend Development",
+        backend: "Backend Development",
+        ai: "AI & Machine Learning",
+        cloud: "Cloud & DevOps",
+        mobile: "Mobile Development",
+        database: "Databases",
+        cv: "Computer Vision",
+      };
+
+      // Current active filter
+      let activeFilter = null;
+      let activeSkillCard = null;
+
+      // Filter projects by skill
+      function filterBySkill(skill, cardElement) {
+        const projects = document.querySelectorAll(".project-card");
+        const filterIndicator = document.getElementById("filterIndicator");
+        const filterName = document.getElementById("filterName");
+        const noResults = document.getElementById("noResults");
+
+        // If clicking the same skill, clear the filter
+        if (activeFilter === skill) {
+          clearFilter();
+          return;
+        }
+
+        // Remove active class from previous card
+        if (activeSkillCard) {
+          activeSkillCard.classList.remove("active");
+        }
+
+        // Add active class to clicked card
+        cardElement.classList.add("active");
+        activeSkillCard = cardElement;
+        activeFilter = skill;
+
+        // Show filter indicator
+        filterIndicator.classList.add("show");
+        filterName.textContent = skillNames[skill];
+
+        let visibleCount = 0;
+
+        projects.forEach((project) => {
+          const projectSkills = project.getAttribute("data-skills").split(",");
+          if (projectSkills.includes(skill)) {
+            project.classList.remove("hidden");
+            visibleCount++;
+          } else {
+            project.classList.add("hidden");
+          }
+        });
+
+        // Show/hide no results message
+        if (visibleCount === 0) {
+          noResults.classList.add("show");
+        } else {
+          noResults.classList.remove("show");
+        }
+
+        // Scroll to projects section
+        document
+          .getElementById("projects")
+          .scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+
+      // Clear filter
+      function clearFilter() {
+        const projects = document.querySelectorAll(".project-card");
+        const filterIndicator = document.getElementById("filterIndicator");
+        const noResults = document.getElementById("noResults");
+
+        // Remove active class from skill card
+        if (activeSkillCard) {
+          activeSkillCard.classList.remove("active");
+          activeSkillCard = null;
+        }
+
+        activeFilter = null;
+
+        // Hide filter indicator
+        filterIndicator.classList.remove("show");
+        noResults.classList.remove("show");
+
+        // Show all projects
+        projects.forEach((project) => {
+          project.classList.remove("hidden");
+        });
+      }
+
       // Smooth scrolling
       function scrollToSection(sectionId) {
         const section = document.getElementById(sectionId);
@@ -1087,15 +1434,15 @@
         );
       }
 
-      // CHANGE 1: Load saved theme - now defaults to dark mode
-      // Only switch to light if user explicitly chose light mode before
+      // Load saved theme - Default to dark mode
       window.addEventListener("load", () => {
         const savedTheme = localStorage.getItem("theme");
-        // If user explicitly chose light mode, remove dark-mode class
+        // If no saved theme or saved theme is dark, use dark mode
+        // Only switch to light if explicitly saved as light
         if (savedTheme === "light") {
           document.body.classList.remove("dark-mode");
         }
-        // Otherwise, dark mode stays (it's the default in the HTML)
+        // Dark mode is already set by default in the body class
       });
 
       // Form submission
